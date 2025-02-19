@@ -66,7 +66,7 @@ class UsageTree {
    */
   public static async hydrate(id: string | undefined = FALLBACK.STORYBOOK_ID): Promise<UsageTree> {
     try {
-      const cache = await import(`.cache/storybook-addon-usage`);
+      const cache = await import(`.cache/storybook-addon-metadata`);
       const treeData = cache.default[id];
       if (treeData) {
         // Hydrate
