@@ -1,0 +1,44 @@
+name: Release Storybook Addon
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+    types:
+      - completed
+    branches:
+      - main
+  repository_dispatch:
+    types: [semantic-release]
+
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    runs-on: ubuntu-latest
+    if:
+      "${{ github.event.workflow_run.conclusion == 'success' }} && ${{
+      github.event.workflow_run.name }}"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare repository
+        run: git fetch --unshallow --tags
+
+      - uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version-file: .nvmrc
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm run release

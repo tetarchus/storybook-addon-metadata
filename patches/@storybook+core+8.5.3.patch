@@ -1,0 +1,11 @@
+diff --git a/node_modules/@storybook/core/dist/theming/index.d.ts b/node_modules/@storybook/core/dist/theming/index.d.ts
+index 7d24c0e..dc00f9e 100644
+--- a/node_modules/@storybook/core/dist/theming/index.d.ts
++++ b/node_modules/@storybook/core/dist/theming/index.d.ts
+@@ -1,5 +1,5 @@
+ import * as React$1 from 'react';
+-import { Provider, ReactElement, createElement, ReactNode } from 'react';
++import { Provider, ReactElement, createElement, JSX, ReactNode } from 'react';
+ 
+ // Definitions by: Junyoung Clare Jang <https://github.com/Ailrun>
+ // TypeScript Version: 2.2
