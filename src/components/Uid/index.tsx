@@ -1,4 +1,4 @@
-import { useStorybookApi } from 'storybook/internal/manager-api';
+import { useStorybookApi } from 'storybook/manager-api';
 
 import { SubHeading } from '../styled';
 import {

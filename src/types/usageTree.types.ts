@@ -1,4 +1,4 @@
-import type { API_HashEntry } from '@storybook/types';
+import type { API_HashEntry } from 'storybook/internal/types';
 import type { SerializedFileNode } from './fileNode.types';
 import type { ParsedStoryFile } from './storybook.types';
 import type { Uids, UidStory } from './uid.types';

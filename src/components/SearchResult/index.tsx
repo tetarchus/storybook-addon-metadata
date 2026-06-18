@@ -1,5 +1,5 @@
 import { BookmarkHollowIcon, ComponentIcon, DocumentIcon, FolderIcon } from '@storybook/icons';
-import { useTheme } from '@storybook/theming';
+import { useTheme } from 'storybook/theming';
 import { useMemo } from 'react';
 
 import { HighlightedText } from '../HighlightedText';

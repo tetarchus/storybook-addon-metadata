@@ -1,4 +1,4 @@
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 /** List wrapper for search results. */
 const SearchResults = styled.ul`

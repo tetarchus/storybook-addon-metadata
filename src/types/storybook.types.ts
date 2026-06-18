@@ -1,12 +1,12 @@
-import type { Optional } from './util.types';
-import type { CoreCommon_StorybookInfo } from '@storybook/types';
+import type { CoreCommon_StorybookInfo } from 'storybook/internal/types';
 import type { getConfigInfo, getStoryTitle } from 'storybook/internal/common';
 import type { StaticStory } from 'storybook/internal/csf-tools';
 import type { Primitive, Simplify } from 'type-fest';
 import type { ValueType } from './variable.types';
+import type { Optional } from './util.types';
 
 /** Fields in the parsed config that may or may not contain a value. */
-type OptionalConfigFields = 'mainConfig' | 'managerConfig' | 'previewConfig';
+type OptionalConfigFields = 'mainConfigPath' | 'managerConfigPath' | 'previewConfigPath';
 
 /** The base StorybookConfig value containing all values. */
 type BaseStorybookConfiguration = Simplify<
@@ -19,6 +19,9 @@ type BaseStorybookConfiguration = Simplify<
 /** The Storybook config returned by `getStorybookConfig`. */
 type StorybookConfig = Omit<BaseStorybookConfiguration, OptionalConfigFields> &
   Optional<Pick<BaseStorybookConfiguration, OptionalConfigFields>> & {
+    // mainConfigPath?: StorybookConfigRaw | null;
+    // managerConfigPath?: BaseStorybookConfiguration['managerConfigPath'] | null;
+    // previewConfigPath?: BaseStorybookConfiguration['managerConfigPath'] | null;
     root: string;
   };
 

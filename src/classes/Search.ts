@@ -12,7 +12,7 @@ import type {
   UidStory,
 } from '@/types';
 import type { UsageTree } from './UsageTree';
-import type { API_HashEntry, API_IndexHash } from '@storybook/types';
+import type { API_HashEntry, API_IndexHash } from 'storybook/internal/types';
 
 /** Controller for handling search functionality. */
 class Search {

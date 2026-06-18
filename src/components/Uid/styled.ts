@@ -1,4 +1,4 @@
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 const Props = styled.div`
   margin-top: var(--spacing-xx-small);
