@@ -1,4 +1,4 @@
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 import type { TextVariant } from './prop.types';
 import type { CSSProperties } from 'react';

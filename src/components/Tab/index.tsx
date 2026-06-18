@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useStorybookApi, useStorybookState } from 'storybook/internal/manager-api';
+import { useStorybookApi, useStorybookState } from 'storybook/manager-api';
 
 import { UsageTree } from '@/classes';
 

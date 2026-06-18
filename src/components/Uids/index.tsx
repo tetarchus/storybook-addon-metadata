@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PiIdentificationBadgeBold } from 'react-icons/pi';
-import { useStorybookApi } from 'storybook/internal/manager-api';
+import { useStorybookApi } from 'storybook/manager-api';
 
 import { Heading } from '../styled';
 import { Uid } from '../Uid';

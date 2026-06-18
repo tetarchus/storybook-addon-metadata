@@ -2,12 +2,10 @@ import { join } from 'node:path';
 
 import { satisfies } from 'semver';
 import { getConfigInfo, getStorybookInfo } from 'storybook/internal/common';
-import { tsImport } from 'tsx/esm/api';
 
 import { ADDON_ID, REGEX, STORYBOOK } from '@/constants';
 
-import type { StorybookConfig as StorybookConfiguration } from '@storybook/types';
-import type { ImportedModule, StorybookConfig } from '@/types';
+import type { StorybookConfig } from '@/types';
 
 /** Supported Semver for Storybook. */
 const VERSION_CHECK = '> 8.0.0';
@@ -72,10 +70,9 @@ const warnUnsupportedPackage = (frameworkPackage: string | undefined) => {
  */
 const getStorybookConfig = async (root: string): Promise<StorybookConfig> => {
   const configDir = join(root, getConfigDirFlag() ?? STORYBOOK.DIR_NAME);
-  const packageJson = (await tsImport(join(root, './package.json'), import.meta.url)) ?? {};
 
-  const configInfo = getConfigInfo(packageJson, configDir);
-  const storybookInfo = getStorybookInfo(packageJson, configDir);
+  const configInfo = getConfigInfo(configDir);
+  const storybookInfo = await getStorybookInfo(configDir);
 
   const storybookConfig = {
     ...storybookInfo,
@@ -83,16 +80,17 @@ const getStorybookConfig = async (root: string): Promise<StorybookConfig> => {
     configDir,
   };
 
-  warnUnsupportedVersion(storybookConfig.version);
+  warnUnsupportedVersion(storybookConfig.versionSpecifier);
   warnUnsupportedPackage(storybookConfig.frameworkPackage);
 
-  const mainConfig = storybookConfig.mainConfig
-    ? ((await tsImport(
-        storybookConfig.mainConfig,
-        import.meta.url,
-      )) as ImportedModule<StorybookConfiguration>)
-    : null;
-  const storiesArray = mainConfig?.default?.stories ?? [];
+  // const mainConfig = storybookConfig.mainConfig
+  //   ? ((await tsImport(
+  //       storybookConfig.mainConfig,
+  //       import.meta.url,
+  //     )) as ImportedModule<StorybookConfiguration>)
+  //   : null;
+  const mainConfig = storybookConfig.mainConfig;
+  const storiesArray = mainConfig?.stories ?? [];
 
   const storyTitleOptions = {
     configDir,

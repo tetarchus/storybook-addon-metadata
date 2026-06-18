@@ -12,7 +12,7 @@ import type {
   UidStory,
   UsageTreeOptions,
 } from '@/types';
-import type { API_IndexHash } from '@storybook/types';
+import type { API_IndexHash } from 'storybook/internal/types';
 
 const hydrateLog = logger(DEVELOPMENT_MODE, 'hydrate');
 

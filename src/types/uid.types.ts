@@ -1,5 +1,5 @@
 import type { SimpleObject } from './base.types';
-import type { API_HashEntry } from '@storybook/types';
+import type { API_HashEntry } from 'storybook/internal/types';
 import type { FunctionComponent as ReactFunctionComponent } from 'react';
 
 /** Result of the UID generation function. */

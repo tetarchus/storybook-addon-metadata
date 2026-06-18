@@ -40,7 +40,7 @@ import type {
   SpreadElement,
   V8IntrinsicIdentifier,
 } from '@babel/types';
-import type { IndexedCSFFile } from '@storybook/types';
+import type { IndexedCSFFile } from 'storybook/internal/types';
 import type { CsfFile } from 'storybook/internal/csf-tools';
 import type { Primitive } from 'type-fest';
 

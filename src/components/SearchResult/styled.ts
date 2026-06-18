@@ -1,4 +1,4 @@
-import { styled } from '@storybook/theming';
+import { styled } from 'storybook/theming';
 
 /** Wrapper for the Icon/Name. */
 const HeadingWrapper = styled.div`

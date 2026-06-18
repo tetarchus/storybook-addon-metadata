@@ -1,15 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
-  addons: [
-    '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
-    {
-      name: '../dist/preset.cjs',
-      options: { addonMetadata: { debug: true, generateTree: false } },
-    },
-  ],
+  addons: ['@chromatic-com/storybook', {
+    name: '../dist/preset.cjs',
+    options: { addonMetadata: { debug: true, generateTree: false } },
+  }, '@storybook/addon-docs'],
   core: {
     disableTelemetry: true,
   },
