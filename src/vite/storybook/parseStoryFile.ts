@@ -6,7 +6,7 @@ import { resolveModuleName } from 'typescript';
 
 import { REGEX } from '@/constants';
 
-import { BabelParser, MetaSymbol } from '../classes';
+import { loadStoryFileParser } from '../classes';
 
 import type { Typescript } from '../classes';
 import type { ParsedStoryFile, StorybookConfig } from '@/types';
@@ -51,8 +51,8 @@ const parseStoryFile = async (
     meta: { id, includeStories = [], excludeStories = [], tags = [], title },
     stories: csfStories,
   } = csf;
-  const argsParser = new BabelParser(csf);
-  const { args, componentName, importedAs } = argsParser.extractStoryFileData();
+  const { MetaSymbol, extractStoryFileData } = await loadStoryFileParser();
+  const { args, componentName, importedAs } = extractStoryFileData(csf);
 
   // Resolve the component path to a module and extract the full path
   const componentModule = componentPath
@@ -69,11 +69,13 @@ const parseStoryFile = async (
       )
     : null;
 
+  // Story args are keyed by export name
+  const exportNames = new Map(csf.indexInputs.map(input => [input.__id, input.exportName]));
+
   const stories = csfStories.map(story => {
-    const { name, localName } = story;
-    const storyName = localName ?? name;
     const metaArgs = args[MetaSymbol];
-    const storyArgs = storyName ? args[storyName] : {};
+    const exportName = exportNames.get(story.id);
+    const storyArgs = exportName ? args[exportName] : undefined;
 
     return {
       ...story,
